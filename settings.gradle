@@ -14,3 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "CoChYape"
 include ':app'
+include ':feature_recipes'
+include ':feature_recipes:presentation'
+include ':feature_recipes:domain'
