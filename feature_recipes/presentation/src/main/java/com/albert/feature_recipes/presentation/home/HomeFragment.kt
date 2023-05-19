@@ -1,9 +1,10 @@
-package com.albert.feature_recipes.presentation
+package com.albert.feature_recipes.presentation.home
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.albert.feature_recipes.presentation.R
 import com.albert.feature_recipes.presentation.databinding.FragmentHomeBinding
 
 

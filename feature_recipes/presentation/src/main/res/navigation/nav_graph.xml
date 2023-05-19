@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_blank" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.albert.feature_recipes.presentation.HomeFragment"
+        android:name="com.albert.feature_recipes.presentation.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
