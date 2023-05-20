@@ -2,4 +2,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_search">Buscar</string>
+    <string name="long_lorem_ipsum_2">Vivamus porttitor, erat at aliquam mollis, risus ligula suscipit metus, id semper nisi dui lacinia leo. Praesent at feugiat sem. Vivamus consectetur arcu sit amet metus efficitur dapibus. Sed metus ligula, efficitur quis finibus nec, pellentesque nec nulla. Nunc nec magna iaculis turpis vehicula condimentum id lobortis lectus.</string>
+    <string name="detail_description">Descripción</string>
+    <string name="ceviche">Ceviche</string>
+    <string name="peru">Perú</string>
+    <string name="description_back">back</string>
+    <string name="description_location">location</string>
+    <string name="preparation">Preparación</string>
+    <string name="ingredients">Ingredientes</string>
+    <string name="image_recipe">imagen de la receta</string>
 </resources>

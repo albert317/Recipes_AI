@@ -28,11 +28,11 @@ class RecipesAdapter(private val listener: (RecipeModel) -> Unit) :
 
     inner class ViewModelRecipe(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemRecipeBinding.bind(itemView)
-        fun bind(recipeModel: RecipeModel) {
-            binding.textTitle.text = recipeModel.name
-            binding.image.bindUrl(recipeModel.image)
-            binding.textDescription.text = recipeModel.description
-            binding.textOrigin.text = recipeModel.origin
+        fun bind(recipe: RecipeModel) {
+            binding.textTitle.text = recipe.name
+            binding.image.bindUrl(recipe.image)
+            binding.textDescription.text = recipe.description
+            binding.textOrigin.text = recipe.origin
         }
     }
 }

@@ -9,6 +9,7 @@ import com.albert.feature_recipes.domain.RecipeModel
 import com.albert.feature_recipes.presentation.R
 import com.albert.feature_recipes.presentation.common.launchAndCollect
 import com.albert.feature_recipes.presentation.databinding.FragmentHomeBinding
+import com.albert.feature_recipes.presentation.ui.model.parcelable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,20 +23,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding = FragmentHomeBinding.bind(view)
         binding.recyclerView.adapter = adapter
 
-        viewModel.getRecipes()
         viewLifecycleOwner.launchAndCollect(viewModel.state) {
             adapter.submitList(it.recipes)
         }
-
         binding.recyclerView.adapter = adapter
+
     }
 
     private fun listenerClickRecipe(recipe: RecipeModel) {
-        goDetail()
-    }
-
-    private fun goDetail() {
-        val action = HomeFragmentDirections.actionHomeFragmentToBlankFragment()
+        val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(recipe.parcelable())
         findNavController().navigate(action)
     }
 }

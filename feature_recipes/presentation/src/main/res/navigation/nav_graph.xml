@@ -6,17 +6,26 @@
     app:startDestination="@id/homeFragment">
 
     <fragment
-        android:id="@+id/blankFragment"
-        android:name="com.albert.feature_recipes.presentation.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
-    <fragment
         android:id="@+id/homeFragment"
         android:name="com.albert.feature_recipes.presentation.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.albert.feature_recipes.presentation.ui.detail.DetailFragment"
+        android:label="DetailFragment"
+        tools:layout="@layout/fragment_detail">
+        <argument
+            android:name="recipe"
+            app:argType="com.albert.feature_recipes.presentation.ui.model.RecipeParcelable" />
+
     </fragment>
 </navigation>

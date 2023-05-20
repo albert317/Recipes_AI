@@ -5,6 +5,7 @@ import arrow.core.left
 import arrow.core.right
 import com.albert.feature_recipes.data.datasorce.RecipeRemoteDataSource
 import com.albert.feature_recipes.domain.ErrorModel
+import com.albert.feature_recipes.domain.IngredientModel
 import com.albert.feature_recipes.domain.RecipeModel
 import com.albert.feature_recipes.presentation.data.toError
 import kotlinx.coroutines.flow.Flow
@@ -29,10 +30,19 @@ private fun RemoteRecipe.toDomainModel() = RecipeModel(
     id,
     name,
     description,
+    preparation,
     image,
     origin,
     latitude,
     longitude,
-    ingredients
+    ingredients?.toIngredientDomainModel()
 )
 
+private fun List<IngredientRecipe>.toIngredientDomainModel(): List<IngredientModel> =
+    map { it.toDomainModel() }
+
+
+private fun IngredientRecipe.toDomainModel() = IngredientModel(
+    name,
+    amount
+)

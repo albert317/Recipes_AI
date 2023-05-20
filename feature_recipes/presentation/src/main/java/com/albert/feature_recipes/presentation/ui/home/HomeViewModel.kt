@@ -22,10 +22,13 @@ class HomeViewModel @Inject constructor(
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
 
+    init {
+        getRecipes()
+    }
 
     fun getRecipes() {
         viewModelScope.launch {
-            _state.update { UiState(loading = true) }
+            _state.update { _state.value.copy(loading = true)}
             val recipes = getRecipesUseCase.invoke()
 
             recipes.flowOn(Dispatchers.IO).collect {
