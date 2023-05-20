@@ -3,7 +3,6 @@ package com.albert.feature_recipes.presentation.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -26,13 +25,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         binding.recyclerView.adapter = adapter
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) {
-            adapter.submitList(it.recipes)
             adapter.setItems(it.recipes)
-            binding.progress.isVisible = it.loading
+            binding.loading = it.loading
         }
 
         binding.apply {
-            searchView.queryHint = "Buscar"
+            searchView.queryHint = getString(R.string.home_search)
             searchView.setOnQueryTextListener(this@HomeFragment)
         }
     }
@@ -47,5 +45,4 @@ class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextLis
         adapter.filter.filter(newText)
         return true
     }
-
 }

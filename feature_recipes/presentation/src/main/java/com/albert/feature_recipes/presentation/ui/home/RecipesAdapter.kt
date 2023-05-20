@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.albert.feature_recipes.domain.RecipeModel
 import com.albert.feature_recipes.presentation.R
 import com.albert.feature_recipes.presentation.common.basicDiffUtil
-import com.albert.feature_recipes.presentation.common.bindUrl
 import com.albert.feature_recipes.presentation.common.inflate
+import com.albert.feature_recipes.presentation.common.loadUrl
 import com.albert.feature_recipes.presentation.databinding.ItemRecipeBinding
 import java.text.Normalizer
 import java.util.Locale
@@ -35,7 +35,7 @@ class RecipesAdapter(private val listener: (RecipeModel) -> Unit) :
         private val binding = ItemRecipeBinding.bind(itemView)
         fun bind(recipe: RecipeModel) {
             binding.textTitle.text = recipe.name
-            binding.image.bindUrl(recipe.image)
+            recipe.image?.let { binding.image.loadUrl(it) }
             binding.textDescription.text = recipe.description
             binding.textOrigin.text = recipe.origin
         }
@@ -54,11 +54,7 @@ class RecipesAdapter(private val listener: (RecipeModel) -> Unit) :
                     itemsFull
                 } else {
                     itemsFull.filter { item ->
-                        val matchName = normalizeString(item.name).contains(normalizedFilterPattern)
-                        val ingredientsMatch = item.ingredients?.map {
-                            normalizeString(it.name).contains(normalizedFilterPattern)
-                        }
-                        matchName || ingredientsMatch?.contains(true) == true
+                        normalizeString(item.name).contains(normalizedFilterPattern)
                     }
                 }
                 val results = FilterResults()
@@ -74,7 +70,7 @@ class RecipesAdapter(private val listener: (RecipeModel) -> Unit) :
     }
 
     private fun normalizeString(input: String): String {
-        val inputAux = input.toLowerCase(Locale.getDefault())
+        val inputAux = input.lowercase(Locale.getDefault())
         val normalizedString = Normalizer.normalize(inputAux, Normalizer.Form.NFD)
         return normalizedString.replace("\\p{M}".toRegex(), "")
     }

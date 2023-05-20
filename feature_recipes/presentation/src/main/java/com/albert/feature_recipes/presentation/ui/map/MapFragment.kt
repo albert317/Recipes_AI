@@ -36,7 +36,7 @@ class MapFragment : Fragment(R.layout.fragment_map){
             googleMap = map
             viewLifecycleOwner.launchAndCollect(viewModel.state) {
                 initToolbar(it.recipeName, it.recipeOrigin)
-                initMarket(LatLng(it.latitude.toDouble(), it.longitude.toDouble()), it.recipeOrigin)
+                addMarker(LatLng(it.latitude.toDouble(), it.longitude.toDouble()), it.recipeOrigin)
             }
         }
     }
@@ -51,7 +51,7 @@ class MapFragment : Fragment(R.layout.fragment_map){
         }
     }
 
-    private fun initMarket(position: LatLng, name: String?) {
+    private fun addMarker(position: LatLng, name: String?) {
         val marker = MarkerOptions()
             .position(position)
             .title(name)
