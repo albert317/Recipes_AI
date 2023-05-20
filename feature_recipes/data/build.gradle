@@ -1,3 +1,5 @@
+import com.albert.buildsrc.Libs
+
 plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
@@ -6,9 +8,9 @@ plugins {
 dependencies {
     implementation project(":feature_recipes:domain")
 
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
-    implementation "javax.inject:javax.inject:1"
-    implementation "io.arrow-kt:arrow-core:1.0.1"
+    implementation Libs.Coroutines.core
+    implementation Libs.JavaX.inject
+    implementation Libs.Arrow.core
 }
 
 java {
