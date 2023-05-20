@@ -28,12 +28,29 @@
             app:argType="com.albert.feature_recipes.presentation.ui.model.RecipeParcelable" />
         <action
             android:id="@+id/action_detailFragment_to_mapFragment"
-            app:destination="@id/mapFragment" />
+            app:destination="@id/mapFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"/>
 
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
         android:name="com.albert.feature_recipes.presentation.ui.map.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="origin"
+            app:argType="string" />
+        <argument
+            android:name="latitude"
+            app:argType="float" />
+        <argument
+            android:name="longitude"
+            app:argType="float" />
+    </fragment>
 </navigation>

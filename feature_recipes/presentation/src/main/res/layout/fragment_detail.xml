@@ -99,15 +99,15 @@
 
                                 </LinearLayout>
 
-                                <ImageButton
+                                <ImageView
                                     android:id="@+id/map"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="50dp"
+                                    android:layout_width="50dp"
+                                    android:layout_height="60dp"
                                     android:background="?attr/selectableItemBackgroundBorderless"
                                     android:contentDescription="@string/description_location"
                                     android:padding="@dimen/spacing_medium"
-                                    app:srcCompat="@drawable/baseline_location_on_24"
-                                    app:tint="@color/grey_60" />
+                                    android:scaleType="centerCrop"
+                                    app:srcCompat="@drawable/img" />
 
                             </LinearLayout>
 
@@ -189,12 +189,11 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <ImageButton
+        <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_margin="@dimen/spacing_large"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="@dimen/spacing_medium"
             android:contentDescription="@string/description_back"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

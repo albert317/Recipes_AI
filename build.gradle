@@ -14,10 +14,7 @@ buildscript {
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.41"
     }
 }
-
-// Taken from https://github.com/ben-manes/gradle-versions-plugin
-def isNonStable = { String version ->
-    def stableKeyword = ['RELEASE', 'FINAL', 'GA'].any { it -> version.toUpperCase().contains(it) }
-    def regex = /^[0-9,.v-]+(-r)?$/
-    return !stableKeyword && !(version ==~ regex)
+plugins {
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin' version '2.0.1' apply false
 }
+

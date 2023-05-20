@@ -2,6 +2,8 @@ package com.albert.feature_recipes.presentation.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -13,7 +15,7 @@ import com.albert.feature_recipes.presentation.ui.model.parcelable
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home), SearchView.OnQueryTextListener {
     lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     private val adapter = RecipesAdapter(::listenerClickRecipe)
@@ -25,13 +27,25 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) {
             adapter.submitList(it.recipes)
+            adapter.setItems(it.recipes)
+            binding.progress.isVisible = it.loading
         }
-        binding.recyclerView.adapter = adapter
 
+        binding.apply {
+            searchView.queryHint = "Buscar"
+            searchView.setOnQueryTextListener(this@HomeFragment)
+        }
     }
 
     private fun listenerClickRecipe(recipe: RecipeModel) {
         val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(recipe.parcelable())
         findNavController().navigate(action)
     }
+
+    override fun onQueryTextSubmit(query: String?) = false
+    override fun onQueryTextChange(newText: String?): Boolean {
+        adapter.filter.filter(newText)
+        return true
+    }
+
 }

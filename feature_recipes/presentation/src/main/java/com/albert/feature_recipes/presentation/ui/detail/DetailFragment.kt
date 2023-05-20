@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.albert.feature_recipes.domain.RecipeModel
 import com.albert.feature_recipes.presentation.R
 import com.albert.feature_recipes.presentation.common.launchAndCollect
 import com.albert.feature_recipes.presentation.common.loadUrl
@@ -32,14 +33,21 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 it.recipe?.image?.let { url -> image.loadUrl(url) }
                 recyclerView.adapter = adapter
                 back.setOnClickListener { navController.navigateUp() }
-                map.setOnClickListener { goMap() }
+                map.setOnClickListener {_-> goMap(it.recipe) }
             }
             adapter.submitList(it.recipe?.ingredients)
         }
     }
 
-    private fun goMap() {
-        val action = DetailFragmentDirections.actionDetailFragmentToMapFragment()
-        navController.navigate(action)
+    private fun goMap(recipeModel: RecipeModel?) {
+        recipeModel?.let {
+            val action = DetailFragmentDirections.actionDetailFragmentToMapFragment(
+                recipeModel.name,
+                recipeModel.origin ?: "",
+                recipeModel.latitude ?: 0f,
+                recipeModel.longitude ?: 0f
+            )
+            navController.navigate(action)
+        }
     }
 }
