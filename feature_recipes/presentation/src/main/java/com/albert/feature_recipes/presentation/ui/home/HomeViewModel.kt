@@ -28,7 +28,7 @@ class HomeViewModel @Inject constructor(
 
     fun getRecipes() {
         viewModelScope.launch {
-            _state.update { _state.value.copy(loading = true)}
+            _state.update { _state.value.copy(loading = true) }
             val recipes = getRecipesUseCase.invoke()
 
             recipes.flowOn(Dispatchers.IO).collect {

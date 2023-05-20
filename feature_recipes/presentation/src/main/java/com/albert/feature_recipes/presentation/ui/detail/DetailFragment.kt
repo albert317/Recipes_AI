@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.albert.feature_recipes.presentation.R
 import com.albert.feature_recipes.presentation.common.launchAndCollect
@@ -16,11 +17,11 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     lateinit var binding: FragmentDetailBinding
     private val adapter = IngredientsAdapter()
     private val viewModel: DetailViewModel by viewModels()
-
+    lateinit var navController: NavController
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailBinding.bind(view)
-        val navController = findNavController()
+        navController = findNavController()
 
         viewLifecycleOwner.launchAndCollect(viewModel.state) {
             binding.apply {
@@ -31,9 +32,14 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 it.recipe?.image?.let { url -> image.loadUrl(url) }
                 recyclerView.adapter = adapter
                 back.setOnClickListener { navController.navigateUp() }
+                map.setOnClickListener { goMap() }
             }
             adapter.submitList(it.recipe?.ingredients)
         }
+    }
 
+    private fun goMap() {
+        val action = DetailFragmentDirections.actionDetailFragmentToMapFragment()
+        navController.navigate(action)
     }
 }
