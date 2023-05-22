@@ -44,8 +44,8 @@ class DetailViewModelTest {
                 assertEquals(UiState(), awaitItem())
                 assertEquals(UiState(loading = true), awaitItem())
                 assertEquals(
-                    UiState(loading = false, recipe = providesRecipeParcelable().toModel()),
-                    awaitItem()
+                    UiState(loading = false,
+                        recipe = providesRecipeParcelable().toModel()), awaitItem()
                 )
             }
         }

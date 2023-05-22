@@ -10,6 +10,7 @@ import com.albert.feature_recipes.presentation.ui.home.HomeViewModel.UiState
 import com.albert.feature_recipes.usecase.GetRecipesUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -18,6 +19,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -66,6 +68,16 @@ class HomeViewModelTest {
                 assertEquals(UiState(loading = false, recipes = ArrayList()), awaitItem())
                 cancel()
             }
+        }
+
+    @Test
+    fun `A2-WHEN invoke init {getRecipe()} THEN verify action calls the corresponding use case`() =
+        runTest {
+            //WHEN
+            whenever(getRecipesUseCase()).thenReturn(flowOf(Either.Right(recipes)))
+            runCurrent()
+            //THEN
+            verify(getRecipesUseCase).invoke()
         }
 
     private fun providesRecipe() = RecipeModel(
