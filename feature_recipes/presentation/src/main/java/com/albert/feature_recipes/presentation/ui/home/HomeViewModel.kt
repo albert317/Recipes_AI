@@ -26,11 +26,10 @@ class HomeViewModel @Inject constructor(
         getRecipes()
     }
 
-    fun getRecipes() {
+    private fun getRecipes() {
         viewModelScope.launch {
             _state.update { _state.value.copy(loading = true) }
-            val recipes = getRecipesUseCase.invoke()
-
+            val recipes = getRecipesUseCase()
             recipes.flowOn(Dispatchers.IO).collect {
                 it.fold(
                     ifLeft = {

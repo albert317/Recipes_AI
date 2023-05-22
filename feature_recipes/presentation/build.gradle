@@ -83,6 +83,12 @@ dependencies {
 
     //Test
     testImplementation Libs.JUnit.junit
+    testImplementation Libs.Mockito.kotlin
+    testImplementation Libs.Mockito.inline
+    testImplementation Libs.Coroutines.test
+    testImplementation Libs.turbine // para testear stateflow
+
     androidTestImplementation Libs.Test.Ext.junit
     androidTestImplementation Libs.Test.Espresso.core
+
 }
