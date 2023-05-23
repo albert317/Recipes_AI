@@ -107,7 +107,7 @@
                                     android:contentDescription="@string/description_location"
                                     android:padding="@dimen/spacing_medium"
                                     android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/img" />
+                                    app:srcCompat="@mipmap/img_review_2" />
 
                                 <ImageView
                                     android:id="@+id/map"
@@ -118,7 +118,7 @@
                                     android:layout_marginStart="@dimen/spacing_large"
                                     android:padding="@dimen/spacing_medium"
                                     android:scaleType="centerCrop"
-                                    app:srcCompat="@drawable/img" />
+                                    app:srcCompat="@drawable/icon_app" />
 
                             </LinearLayout>
 

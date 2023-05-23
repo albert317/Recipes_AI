@@ -60,6 +60,13 @@ object Libs {
     object PlayServices {
         private const val version = "18.1.0"
         const val maps = "com.google.android.gms:play-services-maps:$version"
+
+        object Firebase {
+            private const val version = "32.0.0"
+            const val bom = "com.google.firebase:firebase-bom:32.0.0"
+            const val analytics = "com.google.firebase:firebase-analytics-ktx"
+            const val realtime_database = "com.google.firebase:firebase-database-ktx"
+        }
     }
 
     object Test {
@@ -96,4 +103,12 @@ object Libs {
 
     const val turbine = "app.cash.turbine:turbine:0.7.0"
 
+    object Compose{
+        const val activity_compose="androidx.activity:activity-compose:1.5.1"
+        const val bom="androidx.compose:compose-bom:2022.10.00"
+        const val ui="androidx.compose.ui:ui"
+        const val graphics="androidx.compose.ui:ui-graphics"
+        const val tooling_preview="androidx.compose.ui:ui-tooling-preview"
+        const val material3="androidx.compose.material3:material3"
+    }
 }

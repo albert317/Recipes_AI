@@ -75,14 +75,15 @@ dependencies {
 
     //Hilt
     implementation Libs.Hilt.android
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.5.1'
-    implementation platform('androidx.compose:compose-bom:2022.10.00')
-    implementation 'androidx.compose.ui:ui'
-    implementation 'androidx.compose.ui:ui-graphics'
-    implementation 'androidx.compose.ui:ui-tooling-preview'
-    implementation 'androidx.compose.material3:material3'
     kapt Libs.Hilt.compiler
+
+    //Compose
+    implementation Libs.Compose.activity_compose
+    implementation platform(Libs.Compose.bom)
+    implementation Libs.Compose.ui
+    implementation Libs.Compose.graphics
+    implementation Libs.Compose.tooling_preview
+    implementation Libs.Compose.material3
 
     //Glide
     implementation Libs.Glide.glide
@@ -104,9 +105,9 @@ dependencies {
     implementation Libs.PlayServices.maps
 
     //Firebase
-    implementation platform('com.google.firebase:firebase-bom:32.0.0')
-    implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation platform(Libs.PlayServices.Firebase.bom)
+    implementation Libs.PlayServices.Firebase.analytics
+    implementation Libs.PlayServices.Firebase.realtime_database
 
     //Test
     testImplementation Libs.JUnit.junit
