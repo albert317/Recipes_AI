@@ -33,7 +33,7 @@ class HomeViewModelTest {
 
     private lateinit var viewModel: HomeViewModel
 
-    private val recipes = listOf(providesRecipe())
+    private val recipes = listOf(providesRecipe().copy(id = 1), providesRecipe().copy(id = 2))
 
     @Before
     fun setUp() {
@@ -44,13 +44,13 @@ class HomeViewModelTest {
     fun `A0-WHEN invoke getRecipesUseCase with recipes THEN getRecipe set loading to true, after updates recipes with listRecipes  and set loading to false`() =
         runTest {
             //GIVEN
-            whenever(getRecipesUseCase()).thenReturn(flowOf(Either.Right(recipes)))
+            whenever(getRecipesUseCase.invoke()).thenReturn(flowOf(Either.Right(recipes)))
             //WHEN
             viewModel.state.test {
                 //THEN
                 assertEquals(UiState(), awaitItem())
-                assertEquals(UiState(loading = true), awaitItem())
-                assertEquals(UiState(loading = false, recipes = recipes), awaitItem())
+                assertEquals(UiState(loading = true, error = null), awaitItem())
+                assertEquals(UiState(loading = false, recipes = recipes, error = null), awaitItem())
                 cancel()
             }
         }
@@ -59,13 +59,17 @@ class HomeViewModelTest {
     fun `A1-WHEN invoke getRecipesUseCase with ErrorModel THEN getRecipe set loading to true, after updates recipes with empty and set loading to false`() =
         runTest {
             //GIVEN
-            whenever(getRecipesUseCase()).thenReturn(flowOf(Either.Left(ErrorModel.Unknown("Error"))))
+            val errorModel = ErrorModel.Unknown("Error")
+            whenever(getRecipesUseCase()).thenReturn(flowOf(Either.Left(errorModel)))
             //WHEN
             viewModel.state.test {
                 //THEN
                 assertEquals(UiState(), awaitItem())
-                assertEquals(UiState(loading = true), awaitItem())
-                assertEquals(UiState(loading = false, recipes = ArrayList()), awaitItem())
+                assertEquals(UiState(loading = true, error = null), awaitItem())
+                assertEquals(
+                    UiState(loading = false, recipes = emptyList(), error = errorModel),
+                    awaitItem()
+                )
                 cancel()
             }
         }

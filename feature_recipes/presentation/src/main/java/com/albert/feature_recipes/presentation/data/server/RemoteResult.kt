@@ -16,10 +16,10 @@ data class RemoteRecipe(
     @SerializedName("origin") val origin: String?,
     @SerializedName("latitude") val latitude: Float?,
     @SerializedName("longitude") val longitude: Float?,
-    @SerializedName("ingredients") val ingredients: List<IngredientRecipe>?,
+    @SerializedName("ingredients") val ingredients: List<RemoteIngredient>?,
 )
 
-data class IngredientRecipe(
+data class RemoteIngredient(
     @SerializedName("name") val name: String,
     @SerializedName("amount") val amount: String?,
 )
