@@ -24,7 +24,7 @@ class CommentsDialogFragment : Fragment() {
         return ComposeView(requireContext()).apply {
             setContent {
                 val commentsState by viewModel.state.collectAsState()
-                commentsState.comment?.let { CommentList(comments = it, ::sendComment) }
+                commentsState.comments?.let { CommentList(comments = it, ::sendComment) }
             }
         }
     }

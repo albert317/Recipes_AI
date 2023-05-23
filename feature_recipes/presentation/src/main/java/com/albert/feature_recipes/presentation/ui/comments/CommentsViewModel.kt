@@ -3,6 +3,8 @@ package com.albert.feature_recipes.presentation.ui.comments
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.albert.feature_recipes.domain.CommentModel
+import com.albert.feature_recipes.domain.ErrorModel
+import com.albert.feature_recipes.domain.RecipeModel
 import com.albert.feature_recipes.presentation.common.getDateTime
 import com.albert.feature_recipes.presentation.common.getRandomName
 import com.albert.feature_recipes.presentation.ui.detail.DetailViewModel
@@ -24,8 +26,8 @@ class CommentsViewModel @Inject constructor(
     private val getCommentsUseCase: GetCommentsUseCase,
     private val saveCommentUseCase: SaveCommentUseCase,
 ) : ViewModel() {
-    private val _state = MutableStateFlow(DetailViewModel.UiState())
-    val state: StateFlow<DetailViewModel.UiState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(UiState())
+    val state: StateFlow<UiState> = _state.asStateFlow()
 
     fun getComments(idRecipe: Int) {
 
@@ -37,13 +39,13 @@ class CommentsViewModel @Inject constructor(
                     ifLeft = { error ->
                         _state.update {
                             _state.value.copy(
-                                loading = false, error = error, comment = emptyList()
+                                loading = false, error = error, comments = emptyList()
                             )
                         }
-                    }, ifRight = { recipes ->
+                    }, ifRight = { comments ->
                         _state.update {
                             _state.value.copy(
-                                loading = false, error = null, comment = recipes
+                                loading = false, error = null, comments = comments
                             )
                         }
                     }
@@ -66,4 +68,10 @@ class CommentsViewModel @Inject constructor(
             saveCommentUseCase(commentModel)
         }
     }
+
+    data class UiState(
+        val loading: Boolean = false,
+        val comments:List<CommentModel> = emptyList(),
+        val error: ErrorModel? = null,
+    )
 }

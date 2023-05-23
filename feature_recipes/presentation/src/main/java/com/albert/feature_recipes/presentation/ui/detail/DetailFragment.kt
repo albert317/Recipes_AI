@@ -36,25 +36,14 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 recyclerView.adapter = adapter
                 back.setOnClickListener { navController.navigateUp() }
                 map.setOnClickListener { _ -> goMap(it.recipe) }
-                comments.setOnClickListener { _ -> goComment(it.recipe) }
+                comments.setOnClickListener { goComment() }
                 idRecipe = it.recipe?.id
             }
             adapter.submitList(it.recipe?.ingredients)
         }
     }
 
-    private fun goComment(recipeModel: RecipeModel?) {
-        val commentDialogFragment = CommentsDialogFragment()
-        val args = Bundle()
-        /* recipeModel?.id?.let {
-             args.putInt("idRecipe", it)
-             commentDialogFragment.arguments = args
-             commentDialogFragment.show(
-                 parentFragmentManager,
-                 CommentsDialogFragment::class.simpleName
-             )
-         }*/
-
+    private fun goComment() {
         idRecipe?.let {
             val action = DetailFragmentDirections.actionDetailFragmentToCommentsDialogFragment(it)
             navController.navigate(action)

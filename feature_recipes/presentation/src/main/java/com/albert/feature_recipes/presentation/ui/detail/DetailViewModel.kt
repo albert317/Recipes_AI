@@ -21,7 +21,6 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
-    private val args = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle)
 
     init {
         getRecipe()
@@ -29,15 +28,15 @@ class DetailViewModel @Inject constructor(
 
     private fun getRecipe() {
         viewModelScope.launch {
+            _state.update { _state.value.copy(loading = true) }
             val recipe = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle).recipe
-            _state.update { _state.value.copy(recipe = recipe.toModel()) }
+            _state.update { _state.value.copy(recipe = recipe.toModel(), loading = false) }
         }
     }
 
     data class UiState(
         val loading: Boolean = false,
         val recipe: RecipeModel? = null,
-        val comment: List<CommentModel>? = emptyList(),
         val error: ErrorModel? = null,
     )
 }
