@@ -11,7 +11,7 @@ Este proyecto es una pequeña aplicación de recetas de cocina para dispositivos
 #Características principales
 ---------------------------
 1. Pantalla de búsqueda de recetas: En esta pantalla se muestra una lista de recetas disponibles y un buscador para filtrar las recetas por nombre.
-   ![](static/captura_app.jpg)
+   ![](static/captura_app2.jpg)
 
 2. Pantalla de detalle de receta: Aquí podrás ver la información detallada de una receta específica, incluyendo su imagen, nombre, descripción, preparación e ingredientes. También encontrarás un botón para acceder a la pantalla de mapa y otro boton para acceder a la pantalla de comentarios.
    ![](static/captura_detalle.jpg)
