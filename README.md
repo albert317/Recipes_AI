@@ -19,6 +19,7 @@ Este proyecto es una pequeña aplicación de recetas de cocina para dispositivos
    ![](static/captura_detalle2.jpg)
 
 3. Pantalla de mapa de geolocalización del origen de la receta: En esta pantalla se muestra un google map con un marcador que indica el origen geográfico de la receta.
+   
    ![](static/captura_mapa2.jpg)
 
 4. Pantalla de comentarios de usuarios: En esta pantalla se muestra los comentarios que realizaron los usuarios de cada receta.
