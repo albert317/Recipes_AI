@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MapFragment : Fragment(R.layout.fragment_map){
+class MapFragment : Fragment(R.layout.fragment_map) {
 
     lateinit var binding: FragmentMapBinding
     lateinit var googleMap: GoogleMap

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -62,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:lines="3"
                     android:ellipsize="end"
-                    android:text="El ceviche es un plato de origen peruano que consiste en pescado o mariscos crudos marinados en jugo de limón o lima, con cebolla morada, ají, cilantro y sal. Se sirve frío y es muy refrescante."/>
+                    android:text="El ceviche es un plato de origen peruano que consiste en pescado o mariscos crudos marinados en jugo de limón o lima, con cebolla morada, ají, cilantro y sal. Se sirve frío y es muy refrescante." />
 
                 <View
                     android:layout_width="0dp"

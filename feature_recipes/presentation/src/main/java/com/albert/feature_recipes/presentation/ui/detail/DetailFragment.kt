@@ -11,6 +11,7 @@ import com.albert.feature_recipes.presentation.R
 import com.albert.feature_recipes.presentation.common.launchAndCollect
 import com.albert.feature_recipes.presentation.common.loadUrl
 import com.albert.feature_recipes.presentation.databinding.FragmentDetailBinding
+import com.albert.feature_recipes.presentation.ui.comments.CommentsDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,6 +20,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val adapter = IngredientsAdapter()
     private val viewModel: DetailViewModel by viewModels()
     lateinit var navController: NavController
+    private var idRecipe: Int? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailBinding.bind(view)
@@ -33,9 +35,29 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                 it.recipe?.image?.let { url -> image.loadUrl(url) }
                 recyclerView.adapter = adapter
                 back.setOnClickListener { navController.navigateUp() }
-                map.setOnClickListener {_-> goMap(it.recipe) }
+                map.setOnClickListener { _ -> goMap(it.recipe) }
+                comments.setOnClickListener { _ -> goComment(it.recipe) }
+                idRecipe = it.recipe?.id
             }
             adapter.submitList(it.recipe?.ingredients)
+        }
+    }
+
+    private fun goComment(recipeModel: RecipeModel?) {
+        val commentDialogFragment = CommentsDialogFragment()
+        val args = Bundle()
+        /* recipeModel?.id?.let {
+             args.putInt("idRecipe", it)
+             commentDialogFragment.arguments = args
+             commentDialogFragment.show(
+                 parentFragmentManager,
+                 CommentsDialogFragment::class.simpleName
+             )
+         }*/
+
+        idRecipe?.let {
+            val action = DetailFragmentDirections.actionDetailFragmentToCommentsDialogFragment(it)
+            navController.navigate(action)
         }
     }
 

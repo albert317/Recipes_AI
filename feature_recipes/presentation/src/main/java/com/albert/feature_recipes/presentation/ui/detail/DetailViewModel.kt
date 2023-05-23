@@ -3,6 +3,8 @@ package com.albert.feature_recipes.presentation.ui.detail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.albert.feature_recipes.domain.CommentModel
+import com.albert.feature_recipes.domain.ErrorModel
 import com.albert.feature_recipes.domain.RecipeModel
 import com.albert.feature_recipes.presentation.ui.model.toModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,6 +21,7 @@ class DetailViewModel @Inject constructor(
 ) : ViewModel() {
     private val _state = MutableStateFlow(UiState())
     val state: StateFlow<UiState> = _state.asStateFlow()
+    private val args = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle)
 
     init {
         getRecipe()
@@ -26,14 +29,15 @@ class DetailViewModel @Inject constructor(
 
     private fun getRecipe() {
         viewModelScope.launch {
-            _state.update { _state.value.copy(loading = true) }
             val recipe = DetailFragmentArgs.fromSavedStateHandle(savedStateHandle).recipe
-            _state.update { _state.value.copy(loading = false, recipe = recipe.toModel()) }
+            _state.update { _state.value.copy(recipe = recipe.toModel()) }
         }
     }
 
     data class UiState(
         val loading: Boolean = false,
         val recipe: RecipeModel? = null,
+        val comment: List<CommentModel>? = emptyList(),
+        val error: ErrorModel? = null,
     )
 }

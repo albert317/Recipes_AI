@@ -1,11 +1,10 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_search"
         android:title="buscar" />
     <item
         android:id="@+id/menu_seargfdch"
-        android:title="buscar"/>
+        android:title="buscar" />
     <item
         android:id="@+id/menu_searcgdfh"
         android:title="buscar" />

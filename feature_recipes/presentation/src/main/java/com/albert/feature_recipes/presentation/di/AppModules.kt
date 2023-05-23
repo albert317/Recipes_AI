@@ -1,6 +1,8 @@
 package com.albert.feature_recipes.presentation.di
 
+import com.albert.feature_recipes.data.datasorce.CommentRemoteDataSource
 import com.albert.feature_recipes.data.datasorce.RecipeRemoteDataSource
+import com.albert.feature_recipes.presentation.data.firebase.CommentFirebaseDataSource
 import com.albert.feature_recipes.presentation.data.server.RecipeServerDataSource
 import com.albert.feature_recipes.presentation.data.server.RemoteService
 import dagger.Binds
@@ -45,4 +47,7 @@ object AppModule {
 abstract class AppDataModule {
     @Binds
     abstract fun bindRemoteDataSourceRecipes(recipeServerDataSource: RecipeServerDataSource): RecipeRemoteDataSource
+
+    @Binds
+    abstract fun bindRemoteDataSourceComments(commentFirebaseDataSource: CommentFirebaseDataSource): CommentRemoteDataSource
 }

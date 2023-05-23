@@ -14,9 +14,11 @@ buildscript {
         classpath Libs.Navigation.gradlePlugin
         classpath Libs.gradlePlugin
         classpath Libs.Hilt.gradlePlugin
+        classpath 'com.google.gms:google-services:4.3.15'
     }
 }
 plugins {
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin' version '2.0.1' apply false
+    id 'org.jetbrains.kotlin.android' version '1.7.20' apply false
 }
 
