@@ -2,6 +2,7 @@ package com.albert.feature_recipes.presentation.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.albert.feature_recipes.domain.ErrorModel
 import com.albert.feature_recipes.domain.RecipeModel
 import com.albert.feature_recipes.usecase.GetRecipesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,15 +27,14 @@ class HomeViewModel @Inject constructor(
         getRecipes()
     }
 
-    fun getRecipes() {
+    private fun getRecipes() {
         viewModelScope.launch {
-            _state.update { _state.value.copy(loading = true) }
-            val recipes = getRecipesUseCase.invoke()
-
+            _state.update { _state.value.copy(loading = true, error = null) }
+            val recipes = getRecipesUseCase()
             recipes.flowOn(Dispatchers.IO).collect {
                 it.fold(
-                    ifLeft = {
-                        _state.update { _state.value.copy(loading = false) }
+                    ifLeft = { error ->
+                        _state.update { _state.value.copy(loading = false, error = error) }
                     }, ifRight = { recipes ->
                         _state.update { _state.value.copy(loading = false, recipes = recipes) }
                     })
@@ -45,5 +45,6 @@ class HomeViewModel @Inject constructor(
     data class UiState(
         val loading: Boolean = false,
         val recipes: List<RecipeModel> = ArrayList(),
+        val error: ErrorModel? = null,
     )
 }

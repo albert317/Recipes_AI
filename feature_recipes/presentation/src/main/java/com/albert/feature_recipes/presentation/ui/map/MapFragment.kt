@@ -19,7 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MapFragment : Fragment(R.layout.fragment_map){
+class MapFragment : Fragment(R.layout.fragment_map) {
 
     lateinit var binding: FragmentMapBinding
     lateinit var googleMap: GoogleMap
@@ -55,7 +55,7 @@ class MapFragment : Fragment(R.layout.fragment_map){
         val marker = MarkerOptions()
             .position(position)
             .title(name)
-            .icon(resources.toIcon(R.drawable.img))
+            .icon(resources.toIcon(R.drawable.icon_app))
         val camaraPosition = CameraPosition.builder()
             .target(position)
             .zoom(4f)

@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "747955065799",
+    "firebase_url": "https://retorecipes-default-rtdb.firebaseio.com",
+    "project_id": "retorecipes",
+    "storage_bucket": "retorecipes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747955065799:android:0cdefa37f9f8b49a25bfe2",
+        "android_client_info": {
+          "package_name": "com.albert.cochyape"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747955065799-b91a5cq6cchr4k7hn68elenum8934dto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApuPiTagW5DhjMeEzvBrXyTPMC8GyAOyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747955065799-b91a5cq6cchr4k7hn68elenum8934dto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747955065799:android:557d631d4c2ccd5825bfe2",
+        "android_client_info": {
+          "package_name": "com.albert.feature_recipes.presentation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747955065799-b91a5cq6cchr4k7hn68elenum8934dto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApuPiTagW5DhjMeEzvBrXyTPMC8GyAOyQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747955065799-b91a5cq6cchr4k7hn68elenum8934dto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,4 +11,5 @@
     <string name="preparation">Preparación</string>
     <string name="ingredients">Ingredientes</string>
     <string name="image_recipe">imagen de la receta</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

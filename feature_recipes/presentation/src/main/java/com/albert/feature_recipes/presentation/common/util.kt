@@ -14,6 +14,7 @@ fun RecyclerView.setItems(places: List<RecipeModel>?) {
         (adapter as? RecipesAdapter)?.submitList(places)
     }
 }
+
 @BindingAdapter("url")
 fun ImageView.bindUrl(url: String?) {
     if (url != null) loadUrl(url)

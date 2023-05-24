@@ -1,10 +1,11 @@
+import com.albert.buildsrc.Libs
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
     id 'dagger.hilt.android.plugin'
     id 'kotlin-parcelize'
-
 }
 
 android {
@@ -40,20 +41,27 @@ android {
 }
 
 dependencies {
-
+    //Module
     implementation project(":feature_recipes:presentation")
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
-    implementation "com.google.dagger:hilt-android:2.41"
-    kapt "com.google.dagger:hilt-compiler:2.41"
+    //Android
+    implementation Libs.AndroidX.coreKtx
+    implementation Libs.AndroidX.appCompat
+    implementation Libs.AndroidX.material
+    implementation Libs.AndroidX.constraintLayout
 
+    //Navidation
+    implementation Libs.Navigation.fragmentKtx
+    implementation Libs.Navigation.uiKtx
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    //Hilt
+    implementation Libs.Hilt.android
+    kapt Libs.Hilt.compiler
+
+    //Firebase
+
+    //Test
+    testImplementation Libs.JUnit.junit
+    androidTestImplementation Libs.Test.Ext.junit
+    androidTestImplementation Libs.Test.Espresso.core
 }

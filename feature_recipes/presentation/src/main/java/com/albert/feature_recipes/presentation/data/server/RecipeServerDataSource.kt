@@ -12,10 +12,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
-class RecipeServerDataSource @Inject constructor() : RecipeRemoteDataSource {
+class RecipeServerDataSource @Inject constructor(private val service: RemoteService) :
+    RecipeRemoteDataSource {
     override suspend fun getRecipes(): Flow<Either<ErrorModel, List<RecipeModel>>> = try {
         flow {
-            val result = RemoteConnection.service.listRecipes().result
+            val result = service.listRecipes().result
             val resultModel = result.toDomainModel()
             emit(resultModel.right())
         }
@@ -38,11 +39,11 @@ private fun RemoteRecipe.toDomainModel() = RecipeModel(
     ingredients?.toIngredientDomainModel()
 )
 
-private fun List<IngredientRecipe>.toIngredientDomainModel(): List<IngredientModel> =
+private fun List<RemoteIngredient>.toIngredientDomainModel(): List<IngredientModel> =
     map { it.toDomainModel() }
 
 
-private fun IngredientRecipe.toDomainModel() = IngredientModel(
+private fun RemoteIngredient.toDomainModel() = IngredientModel(
     name,
     amount
 )
