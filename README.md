@@ -1,5 +1,5 @@
 
-Code Challenge Yape - Mobile Developer - Albert Montes
+Mobile Developer - Albert Montes
 ======================================================
 
 ¡Bienvenido(a) al proyecto!
